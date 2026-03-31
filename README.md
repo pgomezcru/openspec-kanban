@@ -9,15 +9,18 @@ Diseño detallado: [`docs/integration.md`](docs/integration.md)
 ## Instalación en un proyecto
 
 ```bash
-copier copy /ruta/a/openspec-kanban .
+copier copy /ruta/a/openspec-kanban . --trust
 # o cuando esté publicado:
-copier copy gh:<usuario>/openspec-kanban .
+copier copy gh:<usuario>/openspec-kanban . --trust
 ```
+
+> `--trust` es necesario porque el template ejecuta un script Python post-copia
+> para añadir la entrada a `.gitignore` sin sobreescribir su contenido.
 
 Para actualizar cuando el template cambie:
 
 ```bash
-copier update
+python -m copier update --trust --src-path /ruta/a/openspec-kanban
 ```
 
 ## Qué se copia al proyecto
@@ -30,7 +33,7 @@ scripts/
 .claude/
   settings.json              Hooks de Claude Code → Kanban
 
-.gitignore                   Excluye openspec/.kanban-mapping del control de versiones
+.gitignore                   Añade openspec/.kanban-mapping (sin sobreescribir el existente)
 ```
 
 ## Requisitos
