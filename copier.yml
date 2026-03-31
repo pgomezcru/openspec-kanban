@@ -8,3 +8,9 @@
 
 _subdirectory: template
 _answers_file: .copier-answers.yml
+
+_tasks:
+  # Añade la entrada al .gitignore del proyecto destino sin sobreescribirlo
+  - >-
+    grep -qxF "openspec/.kanban-mapping" .gitignore 2>/dev/null
+    || echo "openspec/.kanban-mapping" >> .gitignore
