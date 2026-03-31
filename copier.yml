@@ -10,7 +10,14 @@ _subdirectory: template
 _answers_file: .copier-answers.yml
 
 _tasks:
-  # Añade la entrada al .gitignore del proyecto destino sin sobreescribirlo
-  - >-
-    grep -qxF "openspec/.kanban-mapping" .gitignore 2>/dev/null
-    || echo "openspec/.kanban-mapping" >> .gitignore
+  # Añade la entrada al .gitignore del proyecto destino sin sobreescribirlo.
+  # Usa Python para compatibilidad cross-platform (Windows / Linux / macOS).
+  - - python
+    - -c
+    - |
+      import pathlib
+      entry = "openspec/.kanban-mapping"
+      p = pathlib.Path(".gitignore")
+      content = p.read_text(encoding="utf-8") if p.exists() else ""
+      if entry not in content:
+          p.write_text(content.rstrip("\n") + "\n" + entry + "\n", encoding="utf-8")
