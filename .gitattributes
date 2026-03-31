@@ -1,0 +1,2 @@
+# Forzar LF en scripts shell independientemente del OS
+template/scripts/*.sh  text eol=lf
