@@ -1,0 +1,10 @@
+# openspec-kanban — Copier template
+# Sin preguntas: copia todo el contenido de template/ tal como está.
+#
+# Uso:
+#   copier copy gh:<usuario>/openspec-kanban .
+#   copier copy /ruta/local/openspec-kanban .
+#   copier update   (para actualizar un proyecto ya configurado)
+
+_subdirectory: template
+_answers_file: .copier-answers.yml

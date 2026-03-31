@@ -6,7 +6,21 @@ Diseño detallado: [`docs/integration.md`](docs/integration.md)
 
 ---
 
-## Qué incluye
+## Instalación en un proyecto
+
+```bash
+copier copy /ruta/a/openspec-kanban .
+# o cuando esté publicado:
+copier copy gh:<usuario>/openspec-kanban .
+```
+
+Para actualizar cuando el template cambie:
+
+```bash
+copier update
+```
+
+## Qué se copia al proyecto
 
 ```
 scripts/
@@ -15,6 +29,8 @@ scripts/
 
 .claude/
   settings.json              Hooks de Claude Code → Kanban
+
+.gitignore                   Excluye openspec/.kanban-mapping del control de versiones
 ```
 
 ## Requisitos
@@ -32,19 +48,6 @@ scripts/
 # 2. Sincroniza el change al tablero Kanban
 bash scripts/opsx-to-kanban.sh <change-id>
 
-# 3. Abre Kanban en el navegador y ejecuta el agente desde la tarjeta
+# 3. Abre Kanban y ejecuta el agente desde la tarjeta
 cline
-```
-
-## Configuración por agente
-
-### Claude Code
-
-Copia `.claude/settings.json` a tu proyecto (o fusiona con el existente).
-Los hooks reportan progreso a Kanban automáticamente durante la sesión.
-
-### GitHub Copilot CLI
-
-```bash
-bash scripts/copilot-kanban-wrapper.sh <change-id> "implementa los tasks pendientes"
 ```
